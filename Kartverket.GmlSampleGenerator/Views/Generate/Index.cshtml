@@ -24,7 +24,7 @@
 
 @using (Html.BeginForm("GmlFromXsdFile", "Generate", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <label for="xsdfile">Last opp XSD-fil</label>
+    <label id="xsdfile-label" for="xsdfile">Last opp XSD-fil</label>
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -34,7 +34,7 @@
                             Velg fil @Html.TextBox("xsdfile", null, new { type = "file", @id = "xsdfile" })
                         </span>
                     </span>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" aria-labelledby="xsdfile-label" class="form-control" readonly>
                     </div>
                 </div>
             </div>
