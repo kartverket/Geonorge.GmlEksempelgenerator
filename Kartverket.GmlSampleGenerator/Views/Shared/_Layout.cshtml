@@ -29,7 +29,6 @@
     </script>
 
     @RenderSection("head", false)
-    @RenderSection("scripts", false)
 </head>
 
 <body class="geonorge-container geonorge fixed-menu-margin">
@@ -78,5 +77,6 @@
     @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Analytics.min.cshtml")
 
     @Scripts.Render("~/node-modules/scripts")
+    @RenderSection("scripts", false)
 </body>
 </html>
