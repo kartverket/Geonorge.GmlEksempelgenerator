@@ -2,11 +2,8 @@
   "version": "1.0.0",
   "name": "asp.net",
   "private": true,
-  "devDependencies": {
-    "gulp": "^4.0.2"
-  },
   "dependencies": {
-    "geonorge-base": "git+https://github.com/kartverket/felleskomponenter.git",
-    "geonorge-shared-partials": "git+https://github.com/kartverket/Geonorge.SharedPartials.git"
+    "@kartverket/geonorge-web-components": "^0.2.7",
+    "jquery": "3.6.1"
   }
 }
