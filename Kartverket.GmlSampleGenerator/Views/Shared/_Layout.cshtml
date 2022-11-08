@@ -71,9 +71,7 @@
     </div>
     <geonorge-footer language="@CultureHelper.GetCurrentCulture()" version="@Html.ApplicationVersionNumber()" environment="@Html.EnvironmentName()" />
 
-    <script>
-        var environmentIsProduction = applicationEnvironment;
-    </script>
+    <script>var environmentIsProduction = @(Html.EnvironmentName() == "" ? "true" : "false");</script>
     @RenderPage("~/Content/bower_components/kartverket-felleskomponenter/assets/partials/_Analytics.min.cshtml")
 
     @Scripts.Render("~/node-modules/scripts")
