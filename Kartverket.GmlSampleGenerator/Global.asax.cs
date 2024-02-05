@@ -52,7 +52,7 @@ namespace Kartverket.GmlSampleGenerator
                     returnUrl = returnUrl.Replace("https://", "");
 
                     var host = Request.Url.Host;
-                    if (returnUrl.StartsWith("localhost:44354"))
+                    if (returnUrl.StartsWith("localhost:10269"))
                         host = "localhost";
 
                     if (!returnUrl.StartsWith(host))
