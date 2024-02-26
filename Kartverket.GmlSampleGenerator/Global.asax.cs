@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -24,6 +25,8 @@ namespace Kartverket.GmlSampleGenerator
 
         protected void Application_BeginRequest()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             ValidateReturnUrl(Context.Request.QueryString);
 
             var cookie = Context.Request.Cookies["_culture"];
