@@ -6,6 +6,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Kartverket.GmlSampleGenerator.Helpers;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
+using System.Web.Configuration;
 
 namespace Kartverket.GmlSampleGenerator.Controllers
 {
@@ -14,6 +18,55 @@ namespace Kartverket.GmlSampleGenerator.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public void SignIn()
+        {
+            var redirectUrl = Url.Action(nameof(GenerateController.Index), "Generate");
+            HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = redirectUrl },
+                OpenIdConnectAuthenticationDefaults.AuthenticationType);
+        }
+
+        public void SignOut()
+        {
+            // Change loggedIn cookie
+            var cookie = Request.Cookies["_loggedIn"];
+
+            if (cookie != null)
+            {
+                cookie.Value = "false";   // update cookie value
+                //cookie.SameSite = SameSiteMode.Lax;
+                if (!Request.IsLocal)
+                    cookie.Domain = ".geonorge.no";
+
+                Response.Cookies.Set(cookie);
+            }
+            else
+            {
+                cookie = new HttpCookie("_loggedIn");
+                cookie.Value = "false";
+                //cookie.SameSite = SameSiteMode.Lax;
+
+                if (!Request.IsLocal)
+                    cookie.Domain = ".geonorge.no";
+
+                Response.Cookies.Add(cookie);
+            }
+
+            var redirectUri = WebConfigurationManager.AppSettings["GeoID:PostLogoutRedirectUri"];
+            HttpContext.GetOwinContext().Authentication.SignOut(
+                new AuthenticationProperties { RedirectUri = redirectUri },
+                OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                CookieAuthenticationDefaults.AuthenticationType);
+        }
+
+        /// <summary>
+        /// This is the action responding to /signout-callback-oidc route after logout at the identity provider
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SignOutCallback()
+        {
+            return RedirectToAction(nameof(GenerateController.Index), "Generate");
         }
 
         [Route("setculture/{culture}")]
