@@ -30,5 +30,20 @@ namespace Kartverket.GmlSampleGenerator.Helpers
         {
             return WebConfigurationManager.AppSettings["EnvironmentName"];
         }
+
+        public static string PostHogApiKey(this HtmlHelper helper)
+        {
+            return WebConfigurationManager.AppSettings["PostHog:ApiKey"];
+        }
+
+        public static string PostHogApiHost(this HtmlHelper helper)
+        {
+            return WebConfigurationManager.AppSettings["PostHog:ApiHost"];
+        }
+
+        public static string PostHogUiHost(this HtmlHelper helper)
+        {
+            return WebConfigurationManager.AppSettings["PostHog:UiHost"];
+        }
     }
 }

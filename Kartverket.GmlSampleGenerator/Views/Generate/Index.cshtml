@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <input type="submit" value="Generer GML" class="btn" />
+                <input type="submit" value="Generer GML" class="btn" id="generate-from-url-btn" />
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
             </div>
         <div class="col-md-6">
             <div class="form-group">
-                <input type="submit" value="Generer GML" class="btn" />
+                <input type="submit" value="Generer GML" class="btn" id="generate-from-file-btn" />
             </div>
         </div>
     </div>
@@ -48,4 +48,5 @@
 
 @section scripts{
     <script src="~/Scripts/file-inputelement-handling.js"></script>
+    <script src="~/Scripts/posthog-tracking.js"></script>
 }
