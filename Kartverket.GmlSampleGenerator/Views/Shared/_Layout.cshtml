@@ -62,6 +62,7 @@
                 defaults: '2026-05-30',
                 person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
             })
+            posthog.register({ app: 'gmleksempelgenerator' }); // super property added to all events from this app
         </script>
     }
 </head>
